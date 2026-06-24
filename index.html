@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>⚡ Work Status</title>
+<title>Work Status</title>
 <style>
   :root { color-scheme: light; }
   * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -14,147 +14,48 @@
     color: #1d1d1f;
     padding: 16px;
     font-size: 13px;
-    min-height: 100vh;
   }
 
   /* ── Setup screen ── */
-  .setup-screen {
-    max-width: 480px;
+  #setup {
+    max-width: 420px;
     margin: 60px auto;
     background: #fff;
-    border-radius: 16px;
-    padding: 32px;
+    border-radius: 12px;
+    padding: 28px;
     border: 1px solid #e5e5ea;
-    box-shadow: 0 2px 12px rgba(0,0,0,0.06);
   }
-
-  .setup-screen h1 { font-size: 20px; font-weight: 700; margin-bottom: 6px; }
-  .setup-screen p  { font-size: 13px; color: #6e6e73; margin-bottom: 20px; line-height: 1.5; }
-
-  label {
-    display: block;
-    font-size: 11px;
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-    color: #6e6e73;
-    margin-bottom: 6px;
+  #setup h2 { font-size: 16px; font-weight: 600; margin-bottom: 8px; }
+  #setup p { font-size: 12px; color: #6e6e73; line-height: 1.5; margin-bottom: 16px; }
+  #setup a { color: #007aff; text-decoration: none; }
+  #setup label { font-size: 11px; font-weight: 600; display: block; margin-bottom: 6px; color: #3a3a3c; }
+  #setup input {
+    width: 100%; padding: 9px 12px; border: 1px solid #d1d1d6;
+    border-radius: 8px; font-size: 13px; margin-bottom: 12px; outline: none;
   }
-
-  input[type="text"], input[type="password"], select {
-    width: 100%;
-    padding: 10px 12px;
-    border: 1px solid #d1d1d6;
-    border-radius: 8px;
-    font-size: 13px;
-    font-family: inherit;
-    color: #1d1d1f;
-    background: #fafafa;
-    margin-bottom: 16px;
-    outline: none;
-    transition: border-color 0.15s;
-  }
-
-  input:focus, select:focus { border-color: #007aff; background: #fff; }
-
-  .btn {
-    display: inline-block;
-    background: #007aff;
-    color: #fff;
-    border: none;
-    border-radius: 8px;
-    padding: 10px 20px;
-    font-size: 13px;
-    font-weight: 600;
+  #setup input:focus { border-color: #007aff; box-shadow: 0 0 0 3px rgba(0,122,255,0.12); }
+  #setup button {
+    width: 100%; padding: 10px; background: #007aff; color: #fff;
+    border: none; border-radius: 8px; font-size: 13px; font-weight: 600;
     cursor: pointer;
-    font-family: inherit;
-    transition: background 0.15s;
   }
+  #setup button:hover { background: #0062cc; }
+  .setup-hint { font-size: 10px; color: #8e8e93; margin-top: 10px; text-align: center; }
 
-  .btn:hover { background: #0062cc; }
-  .btn:disabled { background: #c7c7cc; cursor: not-allowed; }
-  .btn.secondary { background: #f0f0f5; color: #1d1d1f; }
-  .btn.secondary:hover { background: #e5e5ea; }
-
-  .setup-error {
-    background: #ffeae8;
-    border: 1px solid #ffccc9;
-    border-radius: 8px;
-    padding: 10px 12px;
-    color: #c0392b;
-    font-size: 12px;
-    margin-bottom: 16px;
-  }
-
-  .token-help {
-    font-size: 11px;
-    color: #8e8e93;
-    margin-top: -10px;
-    margin-bottom: 16px;
-  }
-
-  .token-help a { color: #007aff; text-decoration: none; }
-
-  /* ── Dashboard header ── */
-  .dash-header {
-    display: flex;
-    align-items: baseline;
-    justify-content: space-between;
-    margin-bottom: 4px;
-    flex-wrap: wrap;
-    gap: 8px;
-  }
-
-  h1 { font-size: 18px; font-weight: 600; color: #1d1d1f; }
-
+  /* ── Header ── */
+  h1 { font-size: 18px; font-weight: 600; margin-bottom: 4px; }
   .meta { color: #6e6e73; font-size: 11px; margin-bottom: 16px; }
-
-  .header-actions { display: flex; gap: 8px; align-items: center; }
-
-  .refresh-btn {
-    font-size: 11px;
-    background: #f0f0f5;
-    border: none;
-    border-radius: 6px;
-    padding: 4px 10px;
-    cursor: pointer;
-    font-family: inherit;
-    color: #1d1d1f;
-    font-weight: 500;
+  .header-row { display: flex; align-items: baseline; justify-content: space-between; margin-bottom: 4px; }
+  .reset-btn {
+    font-size: 10px; color: #8e8e93; background: none; border: none;
+    cursor: pointer; text-decoration: underline;
   }
 
-  .refresh-btn:hover { background: #e5e5ea; }
-
-  .settings-btn {
-    font-size: 11px;
-    background: none;
-    border: none;
-    cursor: pointer;
-    color: #8e8e93;
-    padding: 4px 6px;
-    border-radius: 6px;
-  }
-
-  .settings-btn:hover { background: #f0f0f5; color: #1d1d1f; }
-
-  /* ── Stats row ── */
-  .stats {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 8px;
-    margin-bottom: 16px;
-  }
-
-  .stat {
-    background: #fff;
-    border-radius: 10px;
-    padding: 12px 14px;
-    border: 1px solid #e5e5ea;
-  }
-
-  .stat-num   { font-size: 24px; font-weight: 700; line-height: 1; margin-bottom: 2px; }
+  /* ── Stats ── */
+  .stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; margin-bottom: 16px; }
+  .stat { background: #fff; border-radius: 10px; padding: 12px 14px; border: 1px solid #e5e5ea; }
+  .stat-num { font-size: 24px; font-weight: 700; line-height: 1; margin-bottom: 2px; }
   .stat-label { font-size: 11px; color: #6e6e73; text-transform: uppercase; letter-spacing: 0.03em; }
-
   .stat.overdue .stat-num { color: #ff3b30; }
   .stat.soon .stat-num    { color: #ff9500; }
   .stat.total .stat-num   { color: #007aff; }
@@ -162,369 +63,183 @@
 
   /* ── Section titles ── */
   .section-title {
-    font-size: 11px;
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 0.06em;
-    color: #6e6e73;
-    margin: 16px 0 8px;
+    font-size: 11px; font-weight: 600; text-transform: uppercase;
+    letter-spacing: 0.06em; color: #6e6e73; margin: 16px 0 8px;
   }
 
   /* ── Project cards ── */
-  .projects {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
-    gap: 8px;
-    margin-bottom: 8px;
-  }
-
-  .project-card {
-    background: #fff;
-    border-radius: 10px;
-    padding: 12px 14px;
-    border: 1px solid #e5e5ea;
-  }
-
-  .project-name {
-    font-size: 12px;
-    font-weight: 600;
-    margin-bottom: 6px;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-  }
-
-  .progress-bar-track {
-    height: 4px;
-    background: #e5e5ea;
-    border-radius: 2px;
-    margin-bottom: 5px;
-    overflow: hidden;
-  }
-
-  .progress-bar-fill {
-    height: 100%;
-    border-radius: 2px;
-    transition: width 0.4s ease;
-  }
-
+  .projects { display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 8px; margin-bottom: 16px; }
+  .project-card { background: #fff; border-radius: 10px; padding: 12px 14px; border: 1px solid #e5e5ea; }
+  .project-name { font-size: 12px; font-weight: 600; margin-bottom: 6px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .progress-bar-track { height: 4px; background: #e5e5ea; border-radius: 2px; margin-bottom: 5px; overflow: hidden; }
+  .progress-bar-fill { height: 100%; border-radius: 2px; transition: width 0.4s ease; }
   .progress-bar-fill.low  { background: #ff3b30; }
   .progress-bar-fill.mid  { background: #ff9500; }
   .progress-bar-fill.high { background: #34c759; }
-
   .project-meta { font-size: 11px; color: #6e6e73; }
 
   /* ── Task groups ── */
-  .task-group {
-    background: #fff;
-    border-radius: 10px;
-    border: 1px solid #e5e5ea;
-    margin-bottom: 8px;
-    overflow: hidden;
-  }
-
-  .group-header {
-    padding: 10px 14px;
-    background: #f5f5f7;
-    border-bottom: 1px solid #e5e5ea;
-    display: flex;
-    align-items: center;
-    gap: 6px;
-  }
-
-  .group-label {
-    font-size: 11px;
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-  }
-
-  .badge {
-    font-size: 10px;
-    font-weight: 600;
-    padding: 1px 6px;
-    border-radius: 10px;
-    margin-left: auto;
-  }
-
+  .task-group { background: #fff; border-radius: 10px; border: 1px solid #e5e5ea; margin-bottom: 8px; overflow: hidden; }
+  .group-header { padding: 10px 14px; background: #f5f5f7; border-bottom: 1px solid #e5e5ea; display: flex; align-items: center; gap: 6px; }
+  .group-label { font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em; }
+  .badge { font-size: 10px; font-weight: 600; padding: 1px 6px; border-radius: 10px; margin-left: auto; }
   .badge.red   { background: #ffeae8; color: #ff3b30; }
   .badge.amber { background: #fff3e0; color: #ff9500; }
   .badge.grey  { background: #f0f0f5; color: #6e6e73; }
-
-  .task-item {
-    padding: 9px 14px;
-    border-bottom: 1px solid #f0f0f5;
-    display: flex;
-    align-items: flex-start;
-    gap: 8px;
-  }
-
+  .task-item { padding: 9px 14px; border-bottom: 1px solid #f0f0f5; display: flex; align-items: flex-start; gap: 8px; }
   .task-item:last-child { border-bottom: none; }
-
-  .task-dot {
-    width: 6px;
-    height: 6px;
-    border-radius: 50%;
-    margin-top: 5px;
-    flex-shrink: 0;
-  }
-
+  .task-dot { width: 6px; height: 6px; border-radius: 50%; margin-top: 5px; flex-shrink: 0; }
   .dot-red   { background: #ff3b30; }
   .dot-amber { background: #ff9500; }
   .dot-grey  { background: #c7c7cc; }
-
-  .task-name    { font-size: 12px; line-height: 1.4; flex: 1; }
+  .task-name { font-size: 12px; line-height: 1.4; flex: 1; }
   .task-project { font-size: 10px; color: #8e8e93; margin-top: 1px; }
-  .task-due     { font-size: 10px; color: #ff3b30; white-space: nowrap; margin-top: 2px; flex-shrink: 0; }
+  .task-due { font-size: 10px; color: #ff3b30; white-space: nowrap; margin-top: 2px; flex-shrink: 0; }
 
   /* ── Loading / error ── */
-  .loading {
-    text-align: center;
-    color: #6e6e73;
-    padding: 40px;
-    font-size: 13px;
-  }
-
-  .error {
-    background: #ffeae8;
-    border: 1px solid #ffccc9;
-    border-radius: 10px;
-    padding: 12px 16px;
-    color: #c0392b;
-    font-size: 12px;
-  }
-
-  /* ── Workspace picker (step 2 of setup) ── */
-  .workspace-list { list-style: none; margin-bottom: 16px; }
-
-  .workspace-item {
-    padding: 10px 12px;
-    border: 1px solid #e5e5ea;
-    border-radius: 8px;
-    margin-bottom: 6px;
-    cursor: pointer;
-    font-size: 13px;
-    transition: background 0.1s;
-  }
-
-  .workspace-item:hover { background: #f0f0f5; border-color: #007aff; }
-
-  @media (max-width: 480px) {
-    .stats { grid-template-columns: repeat(2, 1fr); }
-  }
+  .loading { text-align: center; color: #6e6e73; padding: 40px; font-size: 13px; }
+  .error { background: #ffeae8; border: 1px solid #ffccc9; border-radius: 10px; padding: 12px 16px; color: #c0392b; font-size: 12px; }
 </style>
 </head>
 <body>
 
-<!-- SETUP SCREEN -->
+<!-- Setup screen -->
 <div id="setup" style="display:none;">
-  <div class="setup-screen">
-    <h1>⚡ Work Status</h1>
-    <p>Connect your Asana account to get a live view of your tasks and projects — right from your browser, no Cowork needed.</p>
-
-    <div id="setup-error" class="setup-error" style="display:none;"></div>
-
-    <!-- Step 1: PAT entry -->
-    <div id="step-token">
-      <label for="pat-input">Asana Personal Access Token</label>
-      <input type="password" id="pat-input" placeholder="0/xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx" />
-      <p class="token-help">
-        Generate one at <a href="https://app.asana.com/0/my-apps" target="_blank">app.asana.com → My Profile → Apps → Personal Access Tokens</a>
-      </p>
-      <button class="btn" id="pat-btn" onclick="handlePatSubmit()">Connect →</button>
-    </div>
-
-    <!-- Step 2: Workspace picker (shown if multiple workspaces) -->
-    <div id="step-workspace" style="display:none;">
-      <label>Select Workspace</label>
-      <ul class="workspace-list" id="workspace-list"></ul>
-    </div>
-  </div>
+  <h2>⚡ Work Status Setup</h2>
+  <p>Enter your Asana Personal Access Token to connect this dashboard. Your token is stored only in your browser — never sent anywhere except directly to Asana's API.</p>
+  <p>Get yours at <a href="https://app.asana.com/0/my-apps" target="_blank">app.asana.com/0/my-apps</a> → Create new token.</p>
+  <label for="pat-input">Personal Access Token</label>
+  <input type="password" id="pat-input" placeholder="1/1234567890:abcdef..." autocomplete="off" />
+  <button onclick="saveToken()">Connect to Asana</button>
+  <p class="setup-hint">Your token stays in localStorage and is never shared.</p>
 </div>
 
-<!-- DASHBOARD SCREEN -->
+<!-- Dashboard -->
 <div id="dashboard" style="display:none;">
-  <div class="dash-header">
+  <div class="header-row">
     <h1>⚡ Work Status</h1>
-    <div class="header-actions">
-      <button class="refresh-btn" onclick="loadDashboard()">↻ Refresh</button>
-      <button class="settings-btn" title="Change token / workspace" onclick="resetSetup()">⚙</button>
-    </div>
+    <button class="reset-btn" onclick="resetToken()">disconnect</button>
   </div>
   <div class="meta" id="meta">Loading…</div>
-  <div id="root"><div class="loading">Fetching tasks from Asana…</div></div>
+  <div id="root"><div class="loading">Fetching from Asana…</div></div>
 </div>
 
 <script>
-const API = 'https://app.asana.com/api/1.0';
-let PAT = '';
-let WORKSPACE_GID = '';
+const BASE = 'https://app.asana.com/api/1.0';
 
-// ── Helpers ──────────────────────────────────────────────────────────────────
+function getToken() { return localStorage.getItem('asana_pat'); }
 
-async function asana(path, params = {}) {
-  const url = new URL(API + path);
-  Object.entries(params).forEach(([k, v]) => url.searchParams.set(k, v));
-  const res = await fetch(url.toString(), {
-    headers: {
-      'Authorization': `Bearer ${PAT}`,
-      'Accept': 'application/json'
-    }
-  });
-  if (!res.ok) {
-    const body = await res.json().catch(() => ({}));
-    const msg = body.errors?.[0]?.message || `HTTP ${res.status}`;
-    throw new Error(msg);
-  }
-  return res.json();
-}
-
-function showSetupError(msg) {
-  const el = document.getElementById('setup-error');
-  el.textContent = msg;
-  el.style.display = 'block';
-}
-
-function hideSetupError() {
-  document.getElementById('setup-error').style.display = 'none';
-}
-
-// ── Setup flow ────────────────────────────────────────────────────────────────
-
-async function handlePatSubmit() {
-  hideSetupError();
-  const input = document.getElementById('pat-input');
-  const btn   = document.getElementById('pat-btn');
-  PAT = input.value.trim();
-  if (!PAT) { showSetupError('Please enter your Personal Access Token.'); return; }
-
-  btn.disabled = true;
-  btn.textContent = 'Connecting…';
-
-  try {
-    const data = await asana('/workspaces');
-    const workspaces = data.data || [];
-    if (!workspaces.length) throw new Error('No workspaces found for this token.');
-
-    if (workspaces.length === 1) {
-      WORKSPACE_GID = workspaces[0].gid;
-      saveAndLaunch();
-    } else {
-      // Show workspace picker
-      document.getElementById('step-token').style.display = 'none';
-      const list = document.getElementById('workspace-list');
-      list.innerHTML = workspaces.map(ws =>
-        `<li class="workspace-item" onclick="selectWorkspace('${ws.gid}')">${ws.name}</li>`
-      ).join('');
-      document.getElementById('step-workspace').style.display = 'block';
-    }
-  } catch (err) {
-    showSetupError('Could not connect: ' + err.message);
-  } finally {
-    btn.disabled = false;
-    btn.textContent = 'Connect →';
-  }
-}
-
-function selectWorkspace(gid) {
-  WORKSPACE_GID = gid;
-  saveAndLaunch();
-}
-
-function saveAndLaunch() {
-  localStorage.setItem('asana_pat', PAT);
-  localStorage.setItem('asana_workspace', WORKSPACE_GID);
+function saveToken() {
+  const t = document.getElementById('pat-input').value.trim();
+  if (!t) return;
+  localStorage.setItem('asana_pat', t);
   showDashboard();
 }
 
-function resetSetup() {
+function resetToken() {
   localStorage.removeItem('asana_pat');
   localStorage.removeItem('asana_workspace');
-  PAT = '';
-  WORKSPACE_GID = '';
-  document.getElementById('pat-input').value = '';
-  document.getElementById('step-token').style.display = 'block';
-  document.getElementById('step-workspace').style.display = 'none';
-  hideSetupError();
-  document.getElementById('setup').style.display = 'block';
-  document.getElementById('dashboard').style.display = 'none';
+  location.reload();
 }
 
-// ── Dashboard ────────────────────────────────────────────────────────────────
-
-function showDashboard() {
-  document.getElementById('setup').style.display = 'none';
-  document.getElementById('dashboard').style.display = 'block';
-  loadDashboard();
+async function apiFetch(path) {
+  const res = await fetch(BASE + path, {
+    headers: { 'Authorization': 'Bearer ' + getToken(), 'Accept': 'application/json' }
+  });
+  if (!res.ok) throw new Error(`Asana API error ${res.status}: ${await res.text()}`);
+  return (await res.json()).data;
 }
-
-const today = new Date(); today.setHours(0,0,0,0);
-const inSevenDays = new Date(today); inSevenDays.setDate(today.getDate() + 7);
 
 function fmtDate(d) {
   if (!d) return null;
+  const today = new Date(); today.setHours(0,0,0,0);
   const dt = new Date(d + 'T00:00:00');
   const diff = Math.round((dt - today) / 86400000);
-  if (diff < 0)  return `${Math.abs(diff)}d overdue`;
+  if (diff < 0) return `${Math.abs(diff)}d overdue`;
   if (diff === 0) return 'due today';
   if (diff === 1) return 'due tomorrow';
   return `due in ${diff}d`;
 }
 
-function isOverdue(d) { return d && new Date(d + 'T00:00:00') < today; }
-function isSoon(d)    { if (!d) return false; const dt = new Date(d + 'T00:00:00'); return dt >= today && dt <= inSevenDays; }
+function isOverdue(d) {
+  if (!d) return false;
+  const today = new Date(); today.setHours(0,0,0,0);
+  return new Date(d + 'T00:00:00') < today;
+}
 
-async function loadDashboard() {
+function isSoon(d) {
+  if (!d) return false;
+  const today = new Date(); today.setHours(0,0,0,0);
+  const inSeven = new Date(today); inSeven.setDate(today.getDate() + 7);
+  const dt = new Date(d + 'T00:00:00');
+  return dt >= today && dt <= inSeven;
+}
+
+function taskRow(t, dotClass) {
+  const proj = t.projects?.[0]?.name || '';
+  const due  = t.due_on ? `<div class="task-due">${fmtDate(t.due_on)}</div>` : '';
+  return `
+    <div class="task-item">
+      <div class="task-dot ${dotClass}"></div>
+      <div style="flex:1;min-width:0;">
+        <div class="task-name">${t.name}</div>
+        ${proj ? `<div class="task-project">${proj}</div>` : ''}
+      </div>
+      ${due}
+    </div>`;
+}
+
+function taskGroup(label, tasks, dotClass, badgeCls) {
+  if (!tasks.length) return '';
+  return `
+    <div class="task-group">
+      <div class="group-header">
+        <span class="group-label">${label}</span>
+        <span class="badge ${badgeCls}">${tasks.length}</span>
+      </div>
+      ${tasks.map(t => taskRow(t, dotClass)).join('')}
+    </div>`;
+}
+
+async function showDashboard() {
+  document.getElementById('setup').style.display = 'none';
+  document.getElementById('dashboard').style.display = 'block';
   const root = document.getElementById('root');
   const meta = document.getElementById('meta');
-  root.innerHTML = '<div class="loading">Fetching tasks from Asana…</div>';
-  meta.textContent = 'Loading…';
 
   try {
-    // Fetch tasks and projects in parallel
-    const [taskData, projectData] = await Promise.all([
-      asana('/tasks', {
-        assignee: 'me',
-        workspace: WORKSPACE_GID,
-        opt_fields: 'gid,name,due_on,completed,projects.gid,projects.name',
-        completed_since: 'now',
-        limit: 100
-      }),
-      asana('/projects', {
-        workspace: WORKSPACE_GID,
-        opt_fields: 'gid,name,task_counts',
-        limit: 50
-      })
+    // Get user + workspace
+    let workspaceGid = localStorage.getItem('asana_workspace');
+    if (!workspaceGid) {
+      const me = await apiFetch('/users/me?opt_fields=workspaces');
+      workspaceGid = me.workspaces?.[0]?.gid;
+      if (!workspaceGid) throw new Error('No workspace found on your Asana account.');
+      localStorage.setItem('asana_workspace', workspaceGid);
+    }
+
+    // Fetch tasks + projects in parallel
+    const [tasks, projects] = await Promise.all([
+      apiFetch(`/tasks?assignee=me&workspace=${workspaceGid}&completed_since=now&opt_fields=gid,name,due_on,projects.name&limit=100`),
+      apiFetch(`/projects?workspace=${workspaceGid}&archived=false&opt_fields=gid,name,task_counts.num_tasks,task_counts.num_completed_tasks,task_counts.num_incomplete_tasks&limit=50`)
     ]);
 
-    const tasks    = taskData.data    || [];
-    const projects = projectData.data || [];
-
-    // Project lookup
-    const projectMap = {};
-    for (const p of projects) projectMap[p.gid] = p.name;
-
-    // Categorise
     const overdue = tasks.filter(t => isOverdue(t.due_on));
     const soon    = tasks.filter(t => isSoon(t.due_on));
     const noDate  = tasks.filter(t => !t.due_on);
 
-    // Active projects (have incomplete tasks)
     const activeProjects = projects.filter(p => {
       const tc = p.task_counts;
       return tc && tc.num_tasks > 0 && tc.num_incomplete_tasks > 0;
     });
 
-    // ── Stats ──
     const statsHtml = `
       <div class="stats">
-        <div class="stat total">  <div class="stat-num">${tasks.length}</div>  <div class="stat-label">Open Tasks</div></div>
+        <div class="stat total"><div class="stat-num">${tasks.length}</div><div class="stat-label">Open Tasks</div></div>
         <div class="stat overdue"><div class="stat-num">${overdue.length}</div><div class="stat-label">Overdue</div></div>
-        <div class="stat soon">   <div class="stat-num">${soon.length}</div>   <div class="stat-label">Due This Week</div></div>
-        <div class="stat none">   <div class="stat-num">${noDate.length}</div> <div class="stat-label">No Due Date</div></div>
+        <div class="stat soon"><div class="stat-num">${soon.length}</div><div class="stat-label">Due This Week</div></div>
+        <div class="stat none"><div class="stat-num">${noDate.length}</div><div class="stat-label">No Due Date</div></div>
       </div>`;
 
-    // ── Project cards ──
     const projectCardsHtml = activeProjects.map(p => {
       const tc    = p.task_counts || {};
       const done  = tc.num_completed_tasks || 0;
@@ -533,71 +248,35 @@ async function loadDashboard() {
       const cls   = pct >= 75 ? 'high' : pct >= 40 ? 'mid' : 'low';
       return `
         <div class="project-card">
-          <div class="project-name" title="${esc(p.name)}">${esc(p.name)}</div>
-          <div class="progress-bar-track"><div class="progress-bar-fill ${cls}" style="width:${pct}%"></div></div>
+          <div class="project-name" title="${p.name}">${p.name}</div>
+          <div class="progress-bar-track">
+            <div class="progress-bar-fill ${cls}" style="width:${pct}%"></div>
+          </div>
           <div class="project-meta">${done}/${total} tasks · ${pct}%</div>
         </div>`;
     }).join('');
 
-    // ── Task rows ──
-    function taskRow(t, dotClass) {
-      const proj = t.projects?.[0]?.name || '';
-      const due  = t.due_on ? `<div class="task-due">${fmtDate(t.due_on)}</div>` : '';
-      return `
-        <div class="task-item">
-          <div class="task-dot ${dotClass}"></div>
-          <div style="flex:1; min-width:0;">
-            <div class="task-name">${esc(t.name)}</div>
-            ${proj ? `<div class="task-project">${esc(proj)}</div>` : ''}
-          </div>
-          ${due}
-        </div>`;
-    }
-
-    function taskGroup(label, list, dotClass, badgeCls) {
-      if (!list.length) return '';
-      return `
-        <div class="task-group">
-          <div class="group-header">
-            <span class="group-label">${label}</span>
-            <span class="badge ${badgeCls}">${list.length}</span>
-          </div>
-          ${list.map(t => taskRow(t, dotClass)).join('')}
-        </div>`;
-    }
-
-    const now = new Date().toLocaleTimeString([], {hour:'2-digit', minute:'2-digit'});
-    meta.textContent = `Updated ${now} · ${tasks.length} open tasks across ${activeProjects.length} active projects`;
+    meta.textContent = `Updated ${new Date().toLocaleTimeString([],{hour:'2-digit',minute:'2-digit'})} · ${tasks.length} open tasks · ${activeProjects.length} active projects`;
 
     root.innerHTML = statsHtml
       + (activeProjects.length ? `<div class="section-title">Projects</div><div class="projects">${projectCardsHtml}</div>` : '')
       + '<div class="section-title">Tasks</div>'
-      + taskGroup('Overdue',       overdue, 'dot-red',   'red')
-      + taskGroup('Due This Week', soon,    'dot-amber', 'amber')
-      + taskGroup('No Due Date',   noDate,  'dot-grey',  'grey');
+      + taskGroup('Overdue', overdue, 'dot-red', 'red')
+      + taskGroup('Due This Week', soon, 'dot-amber', 'amber')
+      + taskGroup('No Due Date', noDate, 'dot-grey', 'grey');
 
   } catch (err) {
     meta.textContent = 'Failed to load';
-    root.innerHTML = `<div class="error">Could not fetch Asana data: ${esc(err.message)}<br><br><button class="btn secondary" onclick="resetSetup()">Re-enter Token</button></div>`;
+    root.innerHTML = `<div class="error">${err.message}<br><br><small>If your token expired, click "disconnect" above and re-enter it.</small></div>`;
   }
 }
 
-function esc(s) {
-  return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+// Init
+if (getToken()) {
+  showDashboard();
+} else {
+  document.getElementById('setup').style.display = 'block';
 }
-
-// ── Init ─────────────────────────────────────────────────────────────────────
-
-(function init() {
-  PAT           = localStorage.getItem('asana_pat')        || '';
-  WORKSPACE_GID = localStorage.getItem('asana_workspace')  || '';
-
-  if (PAT && WORKSPACE_GID) {
-    showDashboard();
-  } else {
-    document.getElementById('setup').style.display = 'block';
-  }
-})();
 </script>
 </body>
 </html>
